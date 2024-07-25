@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS models
     model_name varchar(255) NOT NULL,
     serial_number varchar(255),
     color varchar(50),
-    size varchar(50),
+    model_size varchar(50),
     price double_precision,
     in_stock boolean,
     product_id bigint,

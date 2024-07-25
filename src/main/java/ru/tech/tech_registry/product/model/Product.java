@@ -9,11 +9,13 @@ import java.util.List;
 @Table(name = "products")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "product_name")
     private String productName;
     private String country;
     private String manufacturer;
+    @Column(name = "online_order")
     private Boolean onlineOrder;
     private Boolean installment;
     @OneToMany(mappedBy = "product")

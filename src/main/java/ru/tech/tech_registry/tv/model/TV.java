@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "tvs")
 public class TV extends Model {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String category;
     private String technology;

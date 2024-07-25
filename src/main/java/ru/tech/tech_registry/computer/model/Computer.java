@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "computers")
 public class Computer extends Model {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String category;
     private String processorType;

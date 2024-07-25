@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "vacuum_cleaners")
 public class VacuumCleaner extends Model {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double dustCollectorVolume;
     private Integer modes;

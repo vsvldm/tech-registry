@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "refrigerators")
 public class Refrigerator extends Model {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer doorCount;
     private String compressorType;

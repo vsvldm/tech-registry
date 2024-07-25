@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 public class Smartphone extends Model {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer memory;
     private Integer cameras;
