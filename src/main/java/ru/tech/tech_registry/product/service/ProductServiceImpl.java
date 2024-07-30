@@ -1,18 +1,14 @@
 package ru.tech.tech_registry.product.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.tech.tech_registry.exception.exception.NotFoundException;
-import ru.tech.tech_registry.model.model.Model;
-import ru.tech.tech_registry.model.repository.ModelRepository;
 import ru.tech.tech_registry.product.dto.ProductDto;
 import ru.tech.tech_registry.product.mapper.ProductMapper;
 import ru.tech.tech_registry.product.model.Product;
 import ru.tech.tech_registry.product.repository.ProductRepository;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,8 +19,6 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
     @Autowired
     private ProductMapper productMapper;
-    @Autowired
-    private ModelRepository modelRepository;
 
     @Transactional
     @Override
@@ -35,7 +29,11 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     @Override
     public ProductDto update(ProductDto product) {
-        return null;
+        productRepository.findById(product.getId())
+                .orElseThrow(() -> new NotFoundException("Product not found"));
+        
+        Product saveProduct = productRepository.save(productMapper.toProduct(product));
+        return productMapper.toProductDto(saveProduct);
     }
 
     @Transactional
@@ -54,7 +52,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDto> getAllProduct() {
-
         return productRepository.findAll().stream()
                 .map(productMapper::toProductDto)
                 .collect(Collectors.toList());

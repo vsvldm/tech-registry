@@ -6,11 +6,9 @@ import ru.tech.tech_registry.model.model.Model;
 import java.util.List;
 
 public interface ModelService {
-    ModelDto create(ModelDto modelDto);
-
     ModelDto getModelById(Long modelId);
 
-    List<ModelDto> getAllModel();
+    List<ModelDto> getAllModels();
 
     void deleteById(Long modelId);
 

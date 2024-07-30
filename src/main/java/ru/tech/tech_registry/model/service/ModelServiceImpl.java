@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.tech.tech_registry.exception.exception.NotFoundException;
 import ru.tech.tech_registry.model.dto.ModelDto;
 import ru.tech.tech_registry.model.mapper.ModelMapper;
@@ -15,16 +16,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional(readOnly = true)
 public class ModelServiceImpl implements ModelService {
     @Autowired
     private ModelRepository modelRepository;
     @Autowired
     private ModelMapper modelMapper;
 
-    @Override
-    public ModelDto create(ModelDto modelDto) {
-        return null;
-    }
 
     @Override
     public ModelDto getModelById(Long modelId) {
@@ -34,8 +32,8 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
-    public List<ModelDto> getAllModel() {
-        return List.of();
+    public List<ModelDto> getAllModels() {
+        return modelRepository.findAll().stream().map(modelMapper::toModelDto).collect(Collectors.toList());
     }
 
     @Override

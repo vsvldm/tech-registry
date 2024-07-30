@@ -23,7 +23,22 @@ public interface ModelMapper {
     ComputerDto toComputerDto(Computer computer);
     SmartphoneDto toSmartphoneDto(Smartphone smartphone);
     RefrigeratorDto toRefrigeratorDto(Refrigerator refrigerator);
-    ModelDto toModelDto(Model model);
+
+    default ModelDto toModelDto(Model model) {
+        if (model instanceof TV) {
+            return toTVDto((TV) model);
+        } else if (model instanceof VacuumCleaner) {
+            return toVacuumCleanerDto((VacuumCleaner) model);
+        } else if (model instanceof Computer) {
+            return toComputerDto((Computer) model);
+        } else if (model instanceof Smartphone) {
+            return toSmartphoneDto((Smartphone) model);
+        } else if (model instanceof Refrigerator) {
+            return toRefrigeratorDto((Refrigerator) model);
+        } else {
+            return null;
+        }
+    }
     List<ModelDto> toModelDtos(List<Model> models);
 
     Model toModel(ModelDto modelDto);

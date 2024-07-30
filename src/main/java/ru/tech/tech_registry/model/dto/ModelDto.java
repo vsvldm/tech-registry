@@ -1,12 +1,26 @@
 package ru.tech.tech_registry.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
+import ru.tech.tech_registry.computer.model.Computer;
 import ru.tech.tech_registry.product.model.Product;
+import ru.tech.tech_registry.refrigerator.model.Refrigerator;
+import ru.tech.tech_registry.smartphone.model.Smartphone;
+import ru.tech.tech_registry.tv.model.TV;
+import ru.tech.tech_registry.vacuum_cleaner.model.VacuumCleaner;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Computer.class, name = "computer"),
+        @JsonSubTypes.Type(value = Refrigerator.class, name = "refrigerator"),
+        @JsonSubTypes.Type(value = Smartphone.class, name = "smartphone"),
+        @JsonSubTypes.Type(value = TV.class, name = "tv"),
+        @JsonSubTypes.Type(value = VacuumCleaner.class, name = "vacuumCleaner")
+})
 public class ModelDto {
     private final Long id;
     @NotNull
