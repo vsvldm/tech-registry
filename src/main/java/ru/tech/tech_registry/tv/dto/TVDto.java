@@ -1,7 +1,7 @@
 package ru.tech.tech_registry.tv.dto;
 
 import ru.tech.tech_registry.model.dto.ModelDto;
-import ru.tech.tech_registry.product.model.Product;
+import ru.tech.tech_registry.product.dto.ProductDto;
 
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
@@ -11,8 +11,6 @@ public class TVDto extends ModelDto {
     private String category;
     @NotNull
     private String technology;
-    @NotNull
-    private Long productId;
 
     public TVDto(Long id,
                  String name,
@@ -21,14 +19,20 @@ public class TVDto extends ModelDto {
                  String size,
                  Double price,
                  Boolean inStock,
-                 Product product,
+                 ProductDto productDto,
                  String category,
-                 String technology,
-                 Long productId) {
-        super(id, name, serialNumber, color, size, price, inStock, product);
+                 String technology) {
+        super(id, name, serialNumber, color, size, price, inStock, productDto);
         this.category = category;
         this.technology = technology;
-        this.productId = productId;
+    }
+
+    public void setCategory(@NotNull String category) {
+        this.category = category;
+    }
+
+    public void setTechnology(@NotNull String technology) {
+        this.technology = technology;
     }
 
     public String getCategory() {
@@ -51,9 +55,5 @@ public class TVDto extends ModelDto {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), category, technology);
-    }
-
-    public Long getProductId() {
-        return productId;
     }
 }

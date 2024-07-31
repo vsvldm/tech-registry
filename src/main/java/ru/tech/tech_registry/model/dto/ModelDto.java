@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 import ru.tech.tech_registry.computer.model.Computer;
-import ru.tech.tech_registry.product.model.Product;
+import ru.tech.tech_registry.product.dto.ProductDto;
 import ru.tech.tech_registry.refrigerator.model.Refrigerator;
 import ru.tech.tech_registry.smartphone.model.Smartphone;
 import ru.tech.tech_registry.tv.model.TV;
@@ -36,9 +36,8 @@ public class ModelDto {
     private final Double price;
     @NotNull
     private final Boolean inStock;
-    @NotNull
     @JsonBackReference
-    private final Product product;
+    private final ProductDto productDto;
 
     public ModelDto(Long id,
                     String name,
@@ -47,7 +46,7 @@ public class ModelDto {
                     String size,
                     Double price,
                     Boolean inStock,
-                    Product product) {
+                    ProductDto productDto) {
         this.id = id;
         this.name = name;
         this.serialNumber = serialNumber;
@@ -55,7 +54,7 @@ public class ModelDto {
         this.size = size;
         this.price = price;
         this.inStock = inStock;
-        this.product = product;
+        this.productDto = productDto;
     }
 
     @Override
@@ -63,12 +62,12 @@ public class ModelDto {
         if (this == o) return true;
         if (!(o instanceof ModelDto)) return false;
         ModelDto modelDto = (ModelDto) o;
-        return Objects.equals(id, modelDto.id) && Objects.equals(name, modelDto.name) && Objects.equals(serialNumber, modelDto.serialNumber) && Objects.equals(color, modelDto.color) && Objects.equals(size, modelDto.size) && Objects.equals(price, modelDto.price) && Objects.equals(inStock, modelDto.inStock) && Objects.equals(product, modelDto.product);
+        return Objects.equals(id, modelDto.id) && Objects.equals(name, modelDto.name) && Objects.equals(serialNumber, modelDto.serialNumber) && Objects.equals(color, modelDto.color) && Objects.equals(size, modelDto.size) && Objects.equals(price, modelDto.price) && Objects.equals(inStock, modelDto.inStock) && Objects.equals(productDto, modelDto.productDto);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, serialNumber, color, size, price, inStock, product);
+        return Objects.hash(id, name, serialNumber, color, size, price, inStock, productDto);
     }
 
     public Long getId() {
@@ -99,7 +98,7 @@ public class ModelDto {
         return inStock;
     }
 
-    public @NotNull Product getProduct() {
-        return product;
+    public @NotNull ProductDto getProductDto() {
+        return productDto;
     }
 }

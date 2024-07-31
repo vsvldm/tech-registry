@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import ru.tech.tech_registry.exception.exception.ConflictException;
+import ru.tech.tech_registry.exception.exception.BadRequestException;
 import ru.tech.tech_registry.exception.exception.NotFoundException;
 import ru.tech.tech_registry.exception.model.ErrorResponse;
 
@@ -17,8 +17,8 @@ public class ErrorHandler {
     }
 
     @ExceptionHandler
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public ErrorResponse handleConflictExceptions(final ConflictException e) {
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleBadRequestExceptions(final BadRequestException e) {
         return new ErrorResponse(e.getMessage());
     }
 }

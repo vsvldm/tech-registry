@@ -35,6 +35,34 @@ public class Product {
         this.models = models;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public void setOnlineOrder(Boolean onlineOrder) {
+        this.onlineOrder = onlineOrder;
+    }
+
+    public void setInstallment(Boolean installment) {
+        this.installment = installment;
+    }
+
+    public void setModels(List<Model> models) {
+        this.models = models;
+    }
+
     public Long getId() {
         return id;
     }

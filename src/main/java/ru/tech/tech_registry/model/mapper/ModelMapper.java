@@ -1,6 +1,7 @@
 package ru.tech.tech_registry.model.mapper;
 
 import org.mapstruct.Mapper;
+
 import ru.tech.tech_registry.computer.dto.ComputerDto;
 import ru.tech.tech_registry.computer.model.Computer;
 import ru.tech.tech_registry.model.dto.ModelDto;

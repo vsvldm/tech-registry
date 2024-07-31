@@ -1,12 +1,15 @@
 package ru.tech.tech_registry.smartphone.dto;
 
 import ru.tech.tech_registry.model.dto.ModelDto;
-import ru.tech.tech_registry.product.model.Product;
+import ru.tech.tech_registry.product.dto.ProductDto;
 
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 public class SmartphoneDto extends ModelDto {
+    @NotNull
     private Integer memory;
+    @NotNull
     private Integer cameras;
 
     public SmartphoneDto(Long id,
@@ -16,11 +19,19 @@ public class SmartphoneDto extends ModelDto {
                          String size,
                          Double price,
                          Boolean inStock,
-                         Product product,
+                         ProductDto productDto,
                          Integer memory,
                          Integer cameras) {
-        super(id, name, serialNumber, color, size, price, inStock, product);
+        super(id, name, serialNumber, color, size, price, inStock, productDto);
         this.memory = memory;
+        this.cameras = cameras;
+    }
+
+    public void setMemory(Integer memory) {
+        this.memory = memory;
+    }
+
+    public void setCameras(Integer cameras) {
         this.cameras = cameras;
     }
 

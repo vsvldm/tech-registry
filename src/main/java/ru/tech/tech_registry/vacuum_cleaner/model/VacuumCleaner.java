@@ -19,6 +19,14 @@ public class VacuumCleaner extends Model {
         this.modes = modes;
     }
 
+    public void setDustCollectorVolume(Double dustCollectorVolume) {
+        this.dustCollectorVolume = dustCollectorVolume;
+    }
+
+    public void setModes(Integer modes) {
+        this.modes = modes;
+    }
+
     public Double getDustCollectorVolume() {
         return dustCollectorVolume;
     }

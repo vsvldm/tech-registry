@@ -19,6 +19,14 @@ public class Refrigerator extends Model {
         this.compressorType = compressorType;
     }
 
+    public void setDoorCount(Integer doorCount) {
+        this.doorCount = doorCount;
+    }
+
+    public void setCompressorType(String compressorType) {
+        this.compressorType = compressorType;
+    }
+
     public Integer getDoorCount() {
         return doorCount;
     }

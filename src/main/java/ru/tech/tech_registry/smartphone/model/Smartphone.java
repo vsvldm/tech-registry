@@ -19,6 +19,14 @@ public class Smartphone extends Model {
         this.cameras = cameras;
     }
 
+    public void setMemory(Integer memory) {
+        this.memory = memory;
+    }
+
+    public void setCameras(Integer cameras) {
+        this.cameras = cameras;
+    }
+
     public Integer getMemory() {
         return memory;
     }

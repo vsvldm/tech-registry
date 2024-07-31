@@ -23,9 +23,19 @@ public class Computer extends Model {
         return category;
     }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public String getProcessorType() {
         return processorType;
     }
+
+    
+    public void setProcessorType(String processorType) {
+        this.processorType = processorType;
+    }
+
 
     @Override
     public boolean equals(Object o) {

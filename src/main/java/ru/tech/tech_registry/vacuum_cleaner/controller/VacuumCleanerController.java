@@ -23,41 +23,24 @@ public class VacuumCleanerController {
     @Autowired
     private VacuumCleanerService vacuumCleanerService;
 
-    @Operation(summary = "Create a new vacuum cleaner", 
-               description = "Creates a new vacuum cleaner with the provided details.")
+    @Operation(summary = "Create a new vacuum cleaner",
+            description = "Creates a new vacuum cleaner with the provided details.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Vacuum cleaner successfully created", 
-                         content = @Content(mediaType = "application/json", 
-                                            schema = @Schema(implementation = VacuumCleanerDto.class))),
-            @ApiResponse(responseCode = "400", description = "Invalid input", 
-                         content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", 
-                         content = @Content)
+            @ApiResponse(responseCode = "200", description = "Vacuum cleaner successfully created",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = VacuumCleanerDto.class))),
+            @ApiResponse(responseCode = "400", description = "Invalid input",
+                    content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found product",
+                    content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error",
+                    content = @Content)
     })
-    @PostMapping
-    public VacuumCleanerDto create(@Parameter(description = "Details of the vacuum cleaner to be created") 
+    @PostMapping("/{productId}")
+    public VacuumCleanerDto create(@Parameter(description = "ID of the product to which the model belongs")
+                                   @PathVariable Long productId,
+                                   @Parameter(description = "Details of the vacuum cleaner to be created")
                                    @RequestBody VacuumCleanerDto vacuumCleanerDto) {
-        return vacuumCleanerService.create(vacuumCleanerDto);
-    }
-
-    @Operation(summary = "Update an existing vacuum cleaner", 
-               description = "Updates the details of an existing vacuum cleaner identified by the provided ID.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Vacuum cleaner successfully updated", 
-                         content = @Content(mediaType = "application/json", 
-                                            schema = @Schema(implementation = VacuumCleanerDto.class))),
-            @ApiResponse(responseCode = "400", description = "Invalid input", 
-                         content = @Content),
-            @ApiResponse(responseCode = "404", description = "Vacuum cleaner not found", 
-                         content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", 
-                         content = @Content)
-    })
-    @PutMapping("/{vacuumCleanerId}")
-    public VacuumCleanerDto update(@Parameter(description = "ID of the vacuum cleaner to be updated") 
-                                   @PathVariable Long vacuumCleanerId, 
-                                   @Parameter(description = "Details of the vacuum cleaner to be updated") 
-                                   @RequestBody VacuumCleanerDto vacuumCleanerDto) {   
-        return vacuumCleanerService.update(vacuumCleanerId, vacuumCleanerDto);
+        return vacuumCleanerService.create(productId, vacuumCleanerDto);
     }
 }

@@ -17,45 +17,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/computers")
 public class ComputerController {
     @Autowired
     private ComputerService computerService;
 
-     @Operation(summary = "Create a new computer", 
-               description = "Creates a new computer with the provided details.")
+    @Operation(summary = "Create a new computer",
+            description = "Creates a new computer with the provided details.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Computer successfully created", 
-                         content = @Content(mediaType = "application/json", 
-                                            schema = @Schema(implementation = ComputerDto.class))),
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ComputerDto.class))),
             @ApiResponse(responseCode = "400", description = "Invalid input", 
-                         content = @Content),
+                    content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found product",
+                    content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error", 
-                         content = @Content)
+                    content = @Content)
     })
-    @PostMapping
-    public ComputerDto create(@Parameter(description = "Details of the computer to be created") 
-                              @RequestBody ComputerDto computerDto) {
-        return computerService.create(computerDto);
-    }
-
-    @Operation(summary = "Update an existing computer", 
-               description = "Updates the details of an existing computer identified by the provided ID.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Computer successfully updated", 
-                         content = @Content(mediaType = "application/json", 
-                                            schema = @Schema(implementation = ComputerDto.class))),
-            @ApiResponse(responseCode = "400", description = "Invalid input", 
-                         content = @Content),
-            @ApiResponse(responseCode = "404", description = "Computer not found", 
-                         content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", 
-                         content = @Content)
-    })
-    @PutMapping("/{compId}")
-    public ComputerDto update(@Parameter(description = "ID of the computer to be updated") @PathVariable Long compId, 
-                              @Parameter(description = "Details of the computer to be updated") @RequestBody ComputerDto computerDto) {   
-        return computerService.update(compId, computerDto);
+    @PostMapping("/{productId}")
+    public ComputerDto create(@Parameter(description = "ID of the product to which the model belongs")
+                              @PathVariable Long productId,
+                              @Parameter(description = "Details of the computer to be created")
+                              @Valid @RequestBody ComputerDto computerDto) {
+        return computerService.create(productId, computerDto);
     }
 }

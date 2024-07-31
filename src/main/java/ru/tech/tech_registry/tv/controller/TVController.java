@@ -30,33 +30,16 @@ public class TVController {
                                             schema = @Schema(implementation = TVDto.class))),
             @ApiResponse(responseCode = "400", description = "Invalid input", 
                          content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found product",
+                    content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error", 
                          content = @Content)
     })
-    @PostMapping
-    public TVDto create(@Parameter(description = "Details of the TV to be created") 
+    @PostMapping("/{productId}")
+    public TVDto create(@Parameter(description = "ID of the product to which the model belongs")
+                        @PathVariable Long productId,
+                        @Parameter(description = "Details of the TV to be created")
                         @RequestBody TVDto tvDto) {
-        return tvService.create(tvDto);
-    }
-
-    @Operation(summary = "Update an existing TV", 
-               description = "Updates the details of an existing TV identified by the provided ID.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "TV successfully updated", 
-                         content = @Content(mediaType = "application/json", 
-                                            schema = @Schema(implementation = TVDto.class))),
-            @ApiResponse(responseCode = "400", description = "Invalid input", 
-                         content = @Content),
-            @ApiResponse(responseCode = "404", description = "TV not found", 
-                         content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", 
-                         content = @Content)
-    })
-    @PutMapping("/{tvId}")
-    public TVDto update(@Parameter(description = "ID of the TV to be updated") 
-                        @PathVariable Long tvId, 
-                        @Parameter(description = "Details of the TV to be updated") 
-                        @RequestBody TVDto tvDto) {   
-        return tvService.update(tvId, tvDto);
+        return tvService.create(productId, tvDto);
     }
 }

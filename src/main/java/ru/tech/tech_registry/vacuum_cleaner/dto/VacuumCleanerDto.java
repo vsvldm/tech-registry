@@ -1,7 +1,7 @@
 package ru.tech.tech_registry.vacuum_cleaner.dto;
 
 import ru.tech.tech_registry.model.dto.ModelDto;
-import ru.tech.tech_registry.product.model.Product;
+import ru.tech.tech_registry.product.dto.ProductDto;
 
 import java.util.Objects;
 
@@ -16,7 +16,7 @@ public class VacuumCleanerDto extends ModelDto {
                             String size,
                             Double price,
                             Boolean inStock,
-                            Product product,
+                            ProductDto productDto,
                             Double dustCollectorVolume,
                             Integer modes) {
         super(id,
@@ -26,8 +26,16 @@ public class VacuumCleanerDto extends ModelDto {
                 size,
                 price,
                 inStock,
-                product);
+                productDto);
         this.dustCollectorVolume = dustCollectorVolume;
+        this.modes = modes;
+    }
+
+    public void setDustCollectorVolume(Double dustCollectorVolume) {
+        this.dustCollectorVolume = dustCollectorVolume;
+    }
+
+    public void setModes(Integer modes) {
         this.modes = modes;
     }
 

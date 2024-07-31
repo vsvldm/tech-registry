@@ -1,12 +1,15 @@
 package ru.tech.tech_registry.refrigerator.dto;
 
 import ru.tech.tech_registry.model.dto.ModelDto;
-import ru.tech.tech_registry.product.model.Product;
+import ru.tech.tech_registry.product.dto.ProductDto;
 
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 public class RefrigeratorDto extends ModelDto {
+    @NotNull
     private Integer doorCount;
+    @NotNull
     private String compressorType;
 
     public RefrigeratorDto(Long id,
@@ -16,11 +19,19 @@ public class RefrigeratorDto extends ModelDto {
                            String size,
                            Double price,
                            Boolean inStock,
-                           Product product,
+                           ProductDto productDto,
                            Integer doorCount,
                            String compressorType) {
-        super(id, name, serialNumber, color, size, price, inStock, product);
+        super(id, name, serialNumber, color, size, price, inStock, productDto);
         this.doorCount = doorCount;
+        this.compressorType = compressorType;
+    }
+
+    public void setDoorCount(Integer doorCount) {
+        this.doorCount = doorCount;
+    }
+
+    public void setCompressorType(String compressorType) {
         this.compressorType = compressorType;
     }
 
